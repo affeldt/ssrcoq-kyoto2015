@@ -11,6 +11,7 @@ move=> n IH.
 ring.
 Qed.
 
+(* strong induction *)
 Check Wf_nat.lt_wf_ind.
 
 (* SSReflect idiom for strong induction *)
@@ -159,25 +160,6 @@ apply: (ltree_ind2 _ (fun t => lsize t = size (lflat t)) (fun l => foldr addn O 
 Abort.
 
 End MutualNestedInductiveTypes.
-=======
-Lemma u_exp (u : nat -> nat) (u0 : u 0 = 2) (u1 : u 1 = 3) (un : forall n, u n.+2 = 3 * u n.+1 - 2 * u n) n :
-  u n = 1 + 2 ^ n.
-Proof.
-elim/yet_another_ind : n.
-by rewrite u0.
-by rewrite u1.
-move=> m [] IH1 IH2.
-rewrite un IH2 IH1.
-rewrite (expnS _ m.+1).
-rewrite (expnS _ m).
-rewrite 2!mulnDr.
-rewrite 2!muln1.
-rewrite add3n add2n add1n 2!subSS.
-rewrite subSn; last first.
-  by apply leq_pmull.
-by rewrite mulnA -mulnBl mulnA.
-Qed.
->>>>>>> 9bb298bdc9c0bac134d8f126ad3a388c11dbaeb9
 
 (* rewrite tactic *)
 

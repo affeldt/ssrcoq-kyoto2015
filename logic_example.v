@@ -12,7 +12,7 @@ Definition t1_oops := fun y => y -> y.
 Check t1_oops.
 Definition t1 := fun y : Prop => y -> y.
 Check t1.
-Check t1 A : Prop.
+Check (t1 t2) : Prop.
 
 Check (Prop -> Prop) -> B.
 (* NB: Prop -> Prop has type a sort -> ok *)
@@ -82,11 +82,10 @@ Module move_and_apply_tactics.
 Lemma modus_ponens : forall P Q : Prop, (P -> Q) -> P -> Q.
 Show Proof.
 move=> P.
-Show Proof.
 move: P.
-Show Proof.
 move=> P Q PQ p.
-apply: PQ.
+move: PQ.
+apply.
 done.
 Qed.
 
@@ -107,6 +106,7 @@ Variable A : Prop.
 Variable op : A -> A -> A.
 Local Notation "a + b" := (op a b). (* left associative *)
 Hypothesis opA : forall a b c, a + (b + c) = a + b + c.
+Check opA.
 Variable lt : A -> A -> Prop.
 Local Notation "a < b" := (lt a b).
 Hypothesis lt_addr : forall m n p, m < n -> m < n + p.
@@ -134,21 +134,21 @@ End move_and_apply_tactics.
 
 Lemma exo0 : forall P : Prop, P -> P.
 Proof.
-Abort.
+Admitted.
 
 Lemma exo1 : forall P Q : Prop, P -> (P -> Q) -> Q.
 Proof.
-Abort.
+Admitted.
 
 Lemma exo2 : forall P : Prop, (P -> P) -> P -> P.
 Proof.
 (* NB: pove using the modus ponens lemma *)
-Abort.
+Admitted.
 
 (* transitivity of implication *)
 Lemma exo3 P Q R : (P -> Q) -> (Q -> R) -> P -> R.
 Proof.
-Abort.
+Admitted.
 
 Section logical_connectives.
 
@@ -172,6 +172,10 @@ Check False_ind.
 Goal False -> 1 = 0.
 move=> p.
 exact: (False_ind (1 = 0) p).
+Qed.
+
+Goal False -> 1 = 0.
+case.
 Qed.
 
 Print and.

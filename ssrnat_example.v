@@ -6,7 +6,9 @@ Goal forall n, n + n = 2 * n.
 Show Proof.
 elim.
   Show Proof.
-  by rewrite addn0 muln0.
+  rewrite addn0.
+  rewrite muln0.
+  done.
 Show Proof.
 move=> n IH.
 rewrite addSn.
@@ -16,6 +18,7 @@ rewrite mulnS.
 rewrite -addn2.
 rewrite addnC.
 done.
+Show Proof.
 Qed.
 
 Print nat.
