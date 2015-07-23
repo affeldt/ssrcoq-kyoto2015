@@ -194,7 +194,7 @@ exact p.
 Qed.
 
 Print or.
-Print or_ind.
+Check or_ind.
 
 Check (or_intror False I).
 About or_intror.
@@ -205,9 +205,9 @@ Check (@or_intror _ _ I) :  False \/ True.
 
 Goal forall A B, A \/ B -> B \/ A.
 move=> A B.
-  case=> [a | b].
+case => [a | b].
   right.
-  exact a.
+  exact.
 left.
 exact b.
 Qed.
@@ -220,6 +220,10 @@ Abort.
 
 Lemma exo5 : forall A B C : Prop, A /\ B <-> B /\ A.
 Proof.
+move=> A B C.
+Locate "<->".
+Print iff.
+(* (A /\ B -> B /\ A) /\ (B /\ A -> A /\ B) *)
 Abort.
 
 Lemma exo6 (A B C : Prop) : A /\ B /\ C ->
@@ -229,6 +233,7 @@ Abort.
 
 Lemma exo7 (A B : Prop) : (A -> B) -> (~B -> ~A).
 Proof.
+(* ~ A =def= A -> False *)
 Abort.
 
 Section Set_Prop.
@@ -307,9 +312,11 @@ Check (S0 -> P0) : Prop.
 Variable T0 : Type.
 Check (T0 -> P0) : Prop.
 
+Check (True -> True).
 Check (forall x : nat, 0 <= x).
 Check (forall x : nat, x = x) : Set.
 Check (forall A : Prop, A -> A).
+Check nat -> Prop.
 Check (forall P : nat -> Prop, P O -> exists n : nat , P n) : Prop.
 
 (* rule Prod-Set: *)

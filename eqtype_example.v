@@ -38,13 +38,13 @@ Require Arith.
 Check EqNat.beq_nat.
 
 (* exo22: register an instance of myeq for natual numbers as canonical
-and check that one can still use the notation "==" *)
+and check that one can still use the notation "===" *)
 
 End Overloading_of_notations.
 
 Module Eqtype_example.
 
-(* overloading of notation + equivalence with Leibniz equality *)
+(* overloading of notation + equivalence with Leibniz equality -> sharing of lemmas *)
 
 Record myeq := Eqtype {
   carrier : Set ;
@@ -140,5 +140,7 @@ Goal H1' = H2'.
 Fail reflexivity.
 apply buip.
 Abort.
+
+(* -> use for subset types for boolean specifications *)
 
 End unicity_of_identity_proofs.

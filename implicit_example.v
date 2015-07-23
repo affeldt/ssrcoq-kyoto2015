@@ -10,8 +10,8 @@ Definition id_implicit {A : Type} (a : A) : A := a.
 Check (@id_implicit nat O).
 Check (@id_implicit _ O).
 Check (id_implicit O).
-Check (id_implicit _ O).
 Fail Check (id_implicit nat O).
+Check (id_implicit _ O). (* inference incomplete *)
 Check (id_implicit (fun x : nat => x) O).
 
 (* strict implicit arguments *)
@@ -22,22 +22,25 @@ or the 3rd argument) *)
 Check (@cons _ O nil).
 Check (cons O nil).
 
-Inductive Pair {A : Type} := mkPair :
-  forall {l : list A}, length l = 2 -> Pair.
+Set Implicit Arguments.
 
+Inductive Pair (A : Type) := mkPair :
+  forall l : list A, length l = 2 -> Pair A.
+
+About mkPair. (* Argument A is implicit *)
 Check (@mkPair _ (cons O (cons O nil)) (eq_refl (length (cons O (cons O nil))))).
 Check (@mkPair _ (cons O (cons O nil)) (eq_refl 2)).
-Check (mkPair (eq_refl (length (cons O (cons O nil))))).
-Fail Check (mkPair (eq_refl 2)).
+Check (mkPair _ (eq_refl (length (cons O (cons O nil))))).
+Fail Check (mkPair _ (eq_refl 2)).
 
 Reset Pair.
 
-Set Implicit Arguments.
 Unset Strict Implicit.
 
 Inductive Pair (A : Type) := mkPair :
   forall l : list A, length l = 2 -> Pair A.
 
+About mkPair. (* Arguments A, l are implicit *)
 Definition Pair00 := mkPair (eq_refl (length (cons O (cons O nil)))).
 Print Pair00.
 

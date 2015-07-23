@@ -19,10 +19,10 @@ Qed.
 
 Set Printing Universes.
 
-(*Polymorphic*) Definition DupType : Type := forall P : Type, P -> P * P.
+Polymorphic Definition DupType : Type := forall P : Type, P -> P * P.
 Print DupType.
 
-(*Polymorphic*) Definition DupTypeProof : DupType := fun P p => (p, p).
+Polymorphic Definition DupTypeProof : DupType := fun P p => (p, p).
 
 Check (DupTypeProof nat O).
 Check (nat * nat)%type : Set.
@@ -31,8 +31,8 @@ Check (Prop * Prop)%type : Type.
 
 Lemma DupTypeSelf : DupType * DupType.
 Proof.
-Fail Check (DupTypeProof _ DupTypeProof).
-Abort.
+exact (DupTypeProof _ DupTypeProof).
+Qed.
 
 Unset Printing Universes.
 

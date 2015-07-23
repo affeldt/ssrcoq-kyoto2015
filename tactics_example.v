@@ -12,6 +12,7 @@ ring.
 Qed.
 
 (* strong induction *)
+Check nat_ind.
 Check Wf_nat.lt_wf_ind.
 
 (* SSReflect idiom for strong induction *)
@@ -108,9 +109,9 @@ with fflat {A : Set} (f : forest A) :=
 
 Lemma exo15 A (t : tree A) : tsize t = size (tflat t).
 Proof.
-(*elim: t => // h t /=.*)
+(*elim: t => h t /=.*)
 (*elim/tree_ind: t => // h t /=.*)
-Fail elim/tree_ind2 : t.
+(*Fail elim/tree_ind2 : t.*)
 apply: (tree_ind2 _ (fun t => tsize t = size (tflat t)) (fun f => fsize f = size (fflat f))) t => //.
 Abort.
 
@@ -248,8 +249,9 @@ Proof.
 elim: s => // h t IH /=.
 case: ifP => /= [Ph | Ph].
 - case: ifP => [Hh | Hh].
-  + have ->// : h \in t.
+  + have : h \in t.
       move: Hh; by rewrite mem_filter => /andP [].
+    by move=> ->.
   + have : h \in t = false.
       apply: contraFF Hh; by rewrite mem_filter Ph.
     move=> -> /=; by rewrite Ph IH.

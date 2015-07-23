@@ -66,6 +66,7 @@ Print if_spec.
     IfSpecTrue : b -> if_spec b vT vF not_b true vT
   | IfSpecFalse : not_b -> if_spec b vT vF not_b false vF
 *)
+(* ifP is the proof that "if ... is ... then ... else ..." satifies the if_spec predicate *)
 (*
 upon case analysis, match (a subterm in) the goal with
 "(if b then vT else vF)" and generate to goals:

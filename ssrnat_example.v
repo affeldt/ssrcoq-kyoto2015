@@ -24,8 +24,7 @@ Qed.
 Print nat.
 
 Print nat_rect.
-Print nat_ind.
-Print nat_rec.
+Print nat_rect.
 
 Definition mynat_ind_proof := fun (P : nat -> Prop) (f : P 0) (f0 : forall n : nat, P n -> P n.+1) =>
 fix F (n : nat) : P n :=
