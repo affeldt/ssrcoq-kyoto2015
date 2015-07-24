@@ -326,7 +326,7 @@ form a partition of $G$ and that each coset has the same cardinal as
 $H$.
 *)
 
-Lemma myLagrange : #| G | = (#|H| * #|G : H|)%(*coq_*)nat.
+Lemma myLagrange : #| G | = (#|H| * #|G : H|)%nat.
 Proof.
 have -> : #|G| = \sum_(U in rcosets H G) #|U|.
   move: myrcosets_partition.

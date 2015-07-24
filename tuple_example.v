@@ -70,6 +70,7 @@ Qed.
 End Vapp2.
 
 From Ssreflect Require Import ssreflect ssrfun ssrbool eqtype ssrnat seq choice fintype.
+From MathComp Require Import tuple.
 
 Module TupleExample.
 

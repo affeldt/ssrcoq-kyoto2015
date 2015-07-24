@@ -33,10 +33,6 @@ Eval compute in (true === false).
 
 Fail Check (O === 1).
 
-Require Arith.
-
-Check EqNat.beq_nat.
-
 (* exo22: register an instance of myeq for natual numbers as canonical
 and check that one can still use the notation "===" *)
 
@@ -52,6 +48,8 @@ Record myeq := Eqtype {
   Hmyequality : forall x y : carrier, myequality x y = true <-> x = y }.
 
 Notation "a '===' b" := (myequality _ a b) (at level 70).
+
+Require EqNat.
 
 Canonical Structure eqtypenat := Eqtype _ _ EqNat.beq_nat_true_iff.
 

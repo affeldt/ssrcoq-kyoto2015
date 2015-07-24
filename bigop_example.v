@@ -10,14 +10,17 @@ Lemma exo34 : forall n : nat, 2 * (\sum_(0 <= x < n.+1) x) = n * n.+1.
 Proof.
 Abort.
 
+(* big_ord_recr, big_ord0, mulnn, muln2, ring *)
 Lemma exo35 n : (6 * \sum_(k < n.+1) k ^ 2)%nat = n * n.+1 * (n.*2).+1.
 Proof.
 Abort.
 
+(* use Search *)
 Lemma exo36 (x n : nat) : 1 < x -> (x - 1) * (\sum_(k < n.+1) x ^ k) = x ^ n.+1 - 1.
 Proof.
 Abort.
 
+(* use strong induction and exo36 *)
 Lemma exo37 (v : nat -> nat) (v0 : v 0 = 1) (vn : forall n, v n.+1 = \sum_(k < n.+1) v k) (n : nat) :
   n != 0 -> v n = 2 ^ n.-1.
 Proof.

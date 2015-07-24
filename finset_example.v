@@ -5,6 +5,11 @@ Set Implicit Arguments.
 Unset Strict Implicit.
 Unset Printing Implicit Defensive.
 
+Print set_type.
+Set Printing All.
+Print set_type.
+Unset Printing All.
+
 Goal FinSet [ffun x : 'I_3 => true] = setT.
 apply/setP => /= x.
 rewrite {1}SetDef.pred_of_setE /=.

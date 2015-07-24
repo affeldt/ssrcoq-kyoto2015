@@ -52,7 +52,7 @@ move=> P Q.
 move/andP.
 case.
 Undo 2.
-case/andP.
+move/andP => [].
 done.
 Qed.
 
@@ -65,15 +65,15 @@ Abort.
 
 Goal forall P Q : bool, P || Q -> Q || P.
 move=> P Q.
-case/orP.
+move/orP.
 Undo 1.
 case/orP => [H1 | H2].
-  by rewrite H1 orbT.
+  rewrite H1.
+  by rewrite orbT.
 by rewrite H2.
 Qed.
 
 (* use views only: move, case, with /orP, /andP and /(_ t) *)
-
 Lemma exo19 (b b1 b2 : bool) : (b1 -> b) -> (b2 -> b) -> b1 || b2 -> b.
 Proof.
 Abort.
@@ -95,6 +95,6 @@ Print eqn.
 
 Goal forall n m, eqn n m -> n = m.
 move=> n m.
-move/eqP.
+move/eqnP.
 done.
 Qed.

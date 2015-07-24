@@ -149,7 +149,7 @@ CoInductive rgb_spec : rgb -> bool -> bool -> bool -> Prop :=
 (* Prove the following: *)
 Lemma exo29 (*rgbP*) c : rgb_spec c (c == red) (c == green) (c == blue).
 Proof.
-Abort.
+Admitted.
 
 (* same as above but this time using rgbP: *)
 Lemma exo30 c : shift (shift (shift c)) = c.

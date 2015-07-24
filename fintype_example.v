@@ -22,6 +22,12 @@ Definition o0 := @Ordinal 3 O erefl.
 Definition o1 := @Ordinal 3 1 erefl.
 Definition o2 := @Ordinal 3 2 erefl.
 
+Goal @Ordinal 3 1 erefl = insubd ord0 1.
+apply val_inj => /=.
+rewrite val_insubd.
+done.
+Abort.
+
 Check (val o2).
 Check (valP o2).
 

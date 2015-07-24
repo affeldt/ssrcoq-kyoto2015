@@ -4,7 +4,7 @@ From Ssreflect Require Import ssreflect.
 Lemma exo8 (P : nat -> Prop) : ~ (exists x, P x) ->
   forall x, ~ P x.
 Proof.
-Abort
+Abort.
 
 (* from the JFR tutorial *)
 Lemma exo9 (A : Prop) (P : nat -> Prop) :

@@ -97,7 +97,8 @@ Lemma f1 : \sum_t f t = 1.
 Proof.
 rewrite /f.
 transitivity (\sum_(f : {ffun 'I_n -> A}) \prod_(i < n) P (f i)).
-  rewrite (reindex_onto (fun f : {ffun 'I_n -> A} => [tuple f i | i < n]) (fun t => [ffun i : 'I_n => t \_ i])) /=; last first.
+  rewrite (reindex_onto (fun f : {ffun 'I_n -> A} => [tuple f i | i < n])
+                        (fun t => [ffun i : 'I_n => t \_ i])) /=; last first.
     move=> t _.
     apply eq_from_tnth => i.
     rewrite tnth_mktuple.
